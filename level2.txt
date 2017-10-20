@@ -1,0 +1,6 @@
+Method:
+1. Inspect Element
+2. unescape("%62%34%30%32%39")
+
+
+Solution: b4029
