@@ -1,6 +1,6 @@
 Method:
 1. Inspect Element
-2. Find the code (there's a lot of space to try to rick you)
+2. Find the code (there's a lot of space to try to trick you)
 3. unescape("r%20i%20g%20h%20t%20")+""+"p"+"w"+""+"26cb963da")
 
 Solution: r i g h t pw26cb963da
