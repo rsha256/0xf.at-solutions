@@ -1,0 +1,6 @@
+Method:
+1. Inspect Element
+2. Find the code
+3. type "cedcdcceb13545cd2fcc44a04312".length into the console
+
+Solution: 28
