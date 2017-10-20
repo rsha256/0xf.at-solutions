@@ -1,0 +1,6 @@
+Method:
+1. Inspect Element
+2. Find the code
+3. type atoi("o")+28 into the console
+
+Solution: 139
