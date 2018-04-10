@@ -25,6 +25,5 @@ public class Level12 {
             result = sumMonotonic(a,b);
         else
             result = sumMonotonic(b,a);
-        System.out.println("Sum: "+result);
     }
 }
