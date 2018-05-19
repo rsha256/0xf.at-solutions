@@ -10,8 +10,6 @@ Array.matrix = function (m, n, initial)
     }
     return mat;
 };
- 
-// Let´s see if color is anything different to white
 function isColored(color) {
     var colorArr = Array.prototype.slice.call(color);
     if(colorArr[0] != 255 || colorArr[1] != 255 || colorArr[2] != 255) {
@@ -19,20 +17,14 @@ function isColored(color) {
     }
     return false;
 }
- 
-$(document).ready(function () {
-    // Get image and create canvas
+ $(document).ready(function () {
     $("img").eq(1).attr("id", "myImage");
     var img = document.getElementById('myImage');
     var canvas = document.createElement('canvas');
     var result = "";
- 
-    // Fill canvas with imagecontent
     canvas.width = img.width;
     canvas.height = img.height;
     canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
- 
-    // Read colors in controlMatrix
     var imgMatrix = Array.matrix(img.width, img.height, false);
     for(var x = 0; x < img.width; x++) {
         for(var y = 0; y < img.height; y++) {
@@ -41,42 +33,20 @@ $(document).ready(function () {
             imgMatrix[x][y] = isColored(curColor);
         }
     }
- 
-    //Get context and stuff for control output
     var ctx = canvas.getContext('2d');
-    // Make canvas white
     ctx.fillStyle = "#ffffff";
     ctx.fillRect( 0, 0, img.width, img.height );
- 
-    // Now let´s check our matrix
     var squares = 0;
     var circles = 0;
     for(var y = 0; y < img.height; y++) {
         for(var x = 0; x < img.width; x++) {
-            // Found top-line of a new element
             if(imgMatrix[x][y] === true) {
                 var minLeft = x;
                 var maxLeft = x;
- 
-                // Go from starting point lines down until element ends
-                // . . . x ? ? ?
-                // ? ? ? x ? ? ?
-                // ? ? ? x ? ? ?
-                // ? ? ? x ? ? ?
-                // ? ? ? x ? ? ?
-                // ? ? ? . ? ? ?
                 for(var checkY = y; checkY < img.height; checkY++) {
                     if(!imgMatrix[x][checkY]) {
                         break;
                     }
- 
-                    // Go left
-                    // . . . x ? ? ?
-                    // ? . x x ? ? ?
-                    // . x x x ? ? ?
-                    // ? . x x ? ? ?
-                    // ? ? . x ? ? ?
-                    // ? ? . . ? ? ?
                     for(var checkX = x; checkX > 0; checkX--) {
                         if(imgMatrix[checkX][checkY]) {
                             ctx.fillStyle = "#ff0000";
@@ -92,13 +62,6 @@ $(document).ready(function () {
                             break;
                         }
                     }
-                    // Go right and disable all values belonging to object
-                    // . . . x . ? ?
-                    // ? . x x x . ?
-                    // . x x x x x .
-                    // ? . x x x . ?
-                    // ? ? . x . ? ?
-                    // ? ? . . ? ? ?
                     for(var checkX = x + 1; checkX < img.width; checkX++) {
                         if(imgMatrix[checkX][checkY]) {
                             imgMatrix[checkX][checkY] = false;
@@ -109,10 +72,8 @@ $(document).ready(function () {
                         }
                     }
                 }
- 
                 ctx.fillStyle = "#000000";
                 ctx.font="12px Verdana";
- 
                 if(minLeft != maxLeft) {
                     circles++;
                     ctx.fillText("o",x ,y);
